@@ -1,0 +1,55 @@
+---
+import JavaScript from './icons/JavaScript.astro'
+import Css from './icons/Css.astro'
+import Html from './icons/Html.astro'
+const TAGS = {
+    HTML: {
+        name: 'HTML',
+        class: 'bg-[#76220f] text-white',
+        icon: Html,
+    },
+    CSS: {
+        name: 'CSS',
+        class: 'bg-[#003159] text-white',
+        icon: Css,
+    },
+    JavaScript: {
+        name: 'JavaScript',
+        class: 'bg-[#AD9E39] text-white',
+        icon: JavaScript,
+    }
+}
+
+const PROJECTS = [
+    {
+        title: 'TO-DO LIST',
+        description: 'Aplicacion TO-DO para poder crear tareas y tenerlas ordenadas, en la cual cuando finalizes una tarea podras darle CHECK o direcatamente eliminiarla',
+        link: 'file:///Users/ibraimzanko/Desktop/to-do%20list/to-do.html',
+        github: '#',
+        image: '/projects/svgl.webp',
+        tags: [TAGS.HTML, TAGS.CSS, TAGS.JavaScript],
+}
+]
+---
+
+{
+    PROJECTS.map(({ image, title, description, tags }) => (
+        <article>
+            <h3 class="text-2xl font-semibold text-yellow-200 mb-4">{title}</h3>
+            <p class="text-lg mb-6 text-pretty">{description}</p>
+            <ul class="flex gap-x-2 flex-row">
+                {tags.map((tag) => (
+                    <li>
+                        <span class={`flex gap-x-2 rounded-full text-sm ${tag.class} py-1 px-2`}>
+                            <tag.icon class="size-4 mt-0.5" />
+                            {tag.name}
+                        </span>
+                        </li>
+                ))}
+            </ul>
+            <img class="rounded shadow-2xl shadow-white/10 mt-4"
+            src={image} 
+            alt={`Captura de pantalla del proyecto ${image}`} />
+        </article>
+    ))
+}

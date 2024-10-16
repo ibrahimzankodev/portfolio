@@ -1,0 +1,38 @@
+---
+import { date } from "astro:schema"
+import ExperienceItem from "./ExperienceItem.astro"
+import type { ACTION_ERROR_CODES } from "astro:actions"
+
+const EXPERIENCE = [
+    {
+        date: 'Actualmente...',
+        title: 'E-Commerce UI code in Tailwind CSS',
+        description: 'Get started whit dozens of web components and interactive elements built on top of Tailwind CSS',
+        link: '#',
+    },
+    {
+        date: 'Julio 2024',
+        title: 'E-Commerce UI code in Tailwind CSS',
+        description: 'Get started whit dozens of web components and interactive elements built on top of Tailwind CSS',
+        link: '#',
+    },
+    {
+        date: 'Febrero 2020',
+        title: 'E-Commerce UI code in Tailwind CSS',
+        description: 'Get started whit dozens of web components and interactive elements built on top of Tailwind CSS',
+        link: '#',
+    }
+]
+---
+
+
+<ol class="relative border-s border-gray-200 ml-3"> 
+    {
+        EXPERIENCE.map(experience => (
+            <li class="mb-10 ms-4">
+                <ExperienceItem {...experience} />
+            </li>
+        ))
+    }                 
+</ol>
+
