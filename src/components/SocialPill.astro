@@ -1,18 +1,18 @@
-<a  
-    class={`
-    bg-white/5
-    rounded-full 
-    border border-white/10 
-    flex justify-center items-center gap-x-2 
-    py-1 px-2 md:py-2 md:px-4  
+<a
+  class={`
+    bg-slate-900/5 dark:bg-white/5
+    border border-black/10 dark:border-white/10 rounded-full
+    flex justify-center items-center gap-x-2
+    py-1 px-2 md:py-2 md:px-4
     text-xs md:text-base
-    transition
-    hover:scale-110 hover:bg-white/10 
-    `}
-    
-    {...Astro.props}
-    target="_blank"
-    rel="noopener noreferrer"
+    text-slate-700 dark:text-white/80
+    transition-all
+    hover:scale-105 hover:bg-emerald-500/10 hover:border-emerald-500/30 hover:text-emerald-600 dark:hover:text-emerald-400
+    backdrop-blur-md
+  `}
+  {...Astro.props}
+  target="_blank"
+  rel="noopener noreferrer"
 >
-    <slot />
+  <slot />
 </a>

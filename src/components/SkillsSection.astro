@@ -1,0 +1,96 @@
+---
+import ReactIcon from "./icons/ReactIcon.astro";
+import HtmlIcon from "./icons/Html.astro";
+import TailwindIcon from "./icons/TailwindIcon.astro";
+import CssIcon from "./icons/Css.astro";
+import JavaScriptIcon from "./icons/JavaScript.astro";
+import TypeScriptIcon from "./icons/TypeScriptIcon.astro";
+import StrapiIcon from "./icons/Strapi.astro";
+import PostgresIcon from "./icons/Postgres.astro";
+import NextJSIcon from "./icons/NextJS.astro";
+import AstroIcon from "./icons/AstroIcon.astro";
+import GlowCard from "./GlowCard.astro";
+
+const SKILLS = [
+    {
+        name: "React",
+        icon: ReactIcon,
+        size: "col-span-2 row-span-2",
+        category: "Core",
+    },
+    {
+        name: "Next.js",
+        icon: NextJSIcon,
+        size: "col-span-2 row-span-1",
+        category: "Core",
+    },
+    {
+        name: "Astro",
+        icon: AstroIcon,
+        size: "col-span-2 row-span-1",
+        category: "Core",
+    },
+    {
+        name: "TypeScript",
+        icon: TypeScriptIcon,
+        size: "col-span-1 row-span-1",
+        category: "Core",
+    },
+    {
+        name: "TailwindCSS",
+        icon: TailwindIcon,
+        size: "col-span-1 row-span-1",
+        category: "Styling",
+    },
+    {
+        name: "JavaScript",
+        icon: JavaScriptIcon,
+        size: "col-span-1 row-span-1",
+        category: "Logic",
+    },
+    {
+        name: "Strapi",
+        icon: StrapiIcon,
+        size: "col-span-2 row-span-1",
+        category: "Backend",
+    },
+    {
+        name: "Postgres",
+        icon: PostgresIcon,
+        size: "col-span-1 row-span-1",
+        category: "Database",
+    },
+    {
+        name: "CSS3",
+        icon: CssIcon,
+        size: "col-span-1 row-span-1",
+        category: "Styling",
+    },
+    {
+        name: "HTML3",
+        icon: HtmlIcon,
+        size: "col-span-1 row-span-1",
+        category: "Structure",
+    },
+];
+---
+
+<div
+    class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mt-8 auto-rows-[120px]"
+>
+    {
+        SKILLS.map((skill) => (
+            <GlowCard class={`${skill.size}`}>
+                <skill.icon class="size-10 mb-2 text-slate-600 dark:text-white/70 group-hover:text-emerald-500 dark:group-hover:text-emerald-400 transition-colors" />
+                <div class="text-center">
+                    <p class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-emerald-500 dark:group-hover:text-emerald-400 transition-colors">
+                        {skill.name}
+                    </p>
+                    <p class="text-[10px] uppercase font-bold tracking-wider text-slate-500 dark:text-white/40 group-hover:text-slate-700 dark:group-hover:text-white/60 transition-colors">
+                        {skill.category}
+                    </p>
+                </div>
+            </GlowCard>
+        ))
+    }
+</div>

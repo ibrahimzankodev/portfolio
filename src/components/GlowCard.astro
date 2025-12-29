@@ -1,0 +1,64 @@
+---
+interface Props {
+    class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<div
+    class={`relative group overflow-hidden rounded-2xl border border-black/5 dark:border-white/10 bg-slate-500/5 dark:bg-white/5 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-black/20 dark:hover:border-white/20 hover:shadow-2xl hover:shadow-black/5 dark:hover:shadow-white/5 ${className}`}
+>
+    <div
+        class="absolute inset-0 bg-gradient-to-br from-transparent via-black/5 to-transparent dark:via-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+    >
+    </div>
+    <div
+        class="relative z-10 p-6 flex flex-col items-center justify-center h-full"
+    >
+        <slot />
+    </div>
+</div>
+
+<style>
+    div::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background: radial-gradient(
+            600px circle at var(--mouse-x, 0) var(--mouse-y, 0),
+            rgba(16, 185, 129, 0.04),
+            transparent 40%
+        );
+        z-index: 1;
+        transition: opacity 0.3s;
+        opacity: 0;
+    }
+
+    :global(.dark) div::before {
+        background: radial-gradient(
+            600px circle at var(--mouse-x, 0) var(--mouse-y, 0),
+            rgba(255, 255, 255, 0.05),
+            transparent 40%
+        );
+    }
+
+    .group:hover::before {
+        opacity: 1;
+    }
+</style>
+
+<script>
+    // Dynamic glow effect based on mouse position
+    document.addEventListener("mousemove", (e) => {
+        const cards = document.querySelectorAll(".group");
+        cards.forEach((card) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            (card as HTMLElement).style.setProperty("--mouse-x", `${x}px`);
+            (card as HTMLElement).style.setProperty("--mouse-y", `${y}px`);
+        });
+    });
+</script>

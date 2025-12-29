@@ -1,8 +1,10 @@
 ---
-import '@fontsource-variable/onest';
+import "@fontsource-variable/onest";
+import "@fontsource-variable/plus-jakarta-sans";
 
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import About from "../components/About.astro";
 
 interface Props {
 	title: string;
@@ -23,11 +25,24 @@ const { description, title } = Astro.props;
 		<title>{title}</title>
 	</head>
 
-	<body class="px-4">
-		<div class="absolute top-0 z-[-2] h-screen w-screen bg-neutral-950 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"></div
+	<body
+		class="px-4 relative scroll-smooth selection:bg-emerald-500/30 selection:text-emerald-900 dark:selection:text-emerald-200"
+	>
+		<div
+			class="fixed inset-0 -z-10 h-full w-full bg-[#f8fafc] dark:bg-[#020617]"
 		>
+		</div>
+		<div
+			class="fixed inset-0 -z-10 h-full w-full opacity-40 dark:opacity-20 [background:radial-gradient(125%_125%_at_50%_10%,transparent_40%,#10b98122_100%)]"
+		>
+		</div>
+		<div
+			class="fixed inset-0 -z-10 h-full w-full opacity-30 dark:opacity-20 [background-image:radial-gradient(#000_1px,transparent_1px)] dark:[background-image:radial-gradient(#fff_1px,transparent_1px)] [background-size:24px_24px]"
+		>
+		</div>
 		<Header />
 		<slot />
+		<About />
 		<Footer />
 	</body>
 </html>
@@ -37,20 +52,39 @@ const { description, title } = Astro.props;
 	}
 
 	html {
-		font-family: 'onest variable', system-ui, sans-serif;
+		font-family: "Plus Jakarta Sans Variable", "Onest Variable", system-ui,
+			sans-serif;
 		scroll-behavior: smooth;
 	}
 
 	body {
-		background: #050505;
+		background: #f8fafc;
 		display: flex;
 		flex-direction: column;
 		min-height: 100vh;
+	}
+
+	.dark body {
+		background: #020617;
 	}
 
 	@media (prefers-reduce-motion: reduce) {
 		html {
 			scroll-behavior: auto;
 		}
+	}
+
+	::-webkit-scrollbar {
+		width: 10px;
+	}
+	::-webkit-scrollbar-track {
+		background: transparent;
+	}
+	::-webkit-scrollbar-thumb {
+		background: #10b98144;
+		border-radius: 10px;
+	}
+	::-webkit-scrollbar-thumb:hover {
+		background: #10b98166;
 	}
 </style>

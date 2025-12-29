@@ -1,42 +1,161 @@
 ---
-import JavaScript from './icons/JavaScript.astro'
-import Css from './icons/Css.astro'
-import Html from './icons/Html.astro'
+import JavaScript from "./icons/JavaScript.astro";
+
+import Css from "./icons/Css.astro";
+
+import Html from "./icons/Html.astro";
+
+import AstroIcon from "../components/icons/AstroIcon.astro";
+
+import Tailwind from "../components/icons/TailwindIcon.astro";
+
+import TypeScript from "../components/icons/TypeScriptIcon.astro";
+
+import ReactIcon from "../components/icons/ReactIcon.astro";
+
 const TAGS = {
     HTML: {
-        name: 'HTML',
-        class: 'bg-[#76220f] text-white',
+        name: "HTML",
+        class: "bg-orange-500/10 text-orange-600 dark:text-orange-400 border border-orange-500/20",
         icon: Html,
     },
     CSS: {
-        name: 'CSS',
-        class: 'bg-[#003159] text-white',
+        name: "CSS",
+        class: "bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20",
         icon: Css,
     },
     JavaScript: {
-        name: 'JavaScript',
-        class: 'bg-[#AD9E39] text-white',
+        name: "JavaScript",
+        class: "bg-yellow-500/10 text-yellow-700 dark:text-yellow-400 border border-yellow-500/20",
         icon: JavaScript,
-    }
-}
+    },
+    Astro: {
+        name: "Astro",
+        class: "bg-purple-500/10 text-purple-600 dark:text-purple-400 border border-purple-500/20",
+        icon: AstroIcon,
+    },
+    Tailwind: {
+        name: "Tailwind",
+        class: "bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border border-cyan-500/20",
+        icon: Tailwind,
+    },
+    TypeScript: {
+        name: "TypeScript",
+        class: "bg-blue-600/10 text-blue-700 dark:text-blue-400 border border-blue-600/20",
+        icon: TypeScript,
+    },
+    React: {
+        name: "React",
+        class: "bg-sky-500/10 text-sky-600 dark:text-sky-400 border border-sky-500/20",
+        icon: ReactIcon,
+    },
+};
 
-const PROJECTS = [
+const PROJECTS4 = [
     {
-        title: 'TO-DO LIST',
-        description: 'Aplicacion TO-DO para poder crear tareas y tenerlas ordenadas, en la cual cuando finalizes una tarea podras darle CHECK o direcatamente eliminiarla',
-        link: 'file:///Users/ibraimzanko/Desktop/to-do%20list/to-do.html',
-        github: '#',
-        image: '/projects/svgl.webp',
-        tags: [TAGS.HTML, TAGS.CSS, TAGS.JavaScript],
-}
-]
+        title: "MecaToolsXpress",
+        description:
+            "Tienda online profesional para el sector de ferretería industrial. Incluye gestión de usuarios, pasarela de pago Stripe, carrito dinámico y panel de pedidos. Una solución Fullstack robusta creada para optimizar ventas reales.",
+        link: "https://mecatoolsxpress.com",
+        github: "https://github.com/ibrahimzankodev/mecaxpress",
+        image: "/projects/mecaxpress.png",
+        tags: [TAGS.React, TAGS.Tailwind, TAGS.JavaScript],
+    },
+];
 ---
 
+<div class="space-y-24">
+    {
+        PROJECTS4.map(({ image, title, description, tags, link }) => (
+            <article class="group flex flex-col md:flex-row gap-8 lg:gap-12 items-center">
+                <div class="w-full md:w-1/2 overflow-hidden rounded-2xl border border-black/5 dark:border-white/10 shadow-2xl transition duration-500 group-hover:shadow-emerald-500/10">
+                    <a
+                        href={link}
+                        target="_blank"
+                        class="block overflow-hidden"
+                    >
+                        <img
+                            class="w-full h-auto object-cover transition duration-700 group-hover:scale-110"
+                            src={image}
+                            alt={`Captura del proyecto ${title}`}
+                        />
+                    </a>
+                </div>
+
+                <div class="flex-1 space-y-4">
+                    <h3 class="text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white group-hover:text-emerald-500 transition-colors">
+                        {title}
+                    </h3>
+                    <ul class="flex flex-wrap gap-2">
+                        {tags.map((tag) => (
+                            <li>
+                                <span
+                                    class={`inline-flex items-center gap-1.5 rounded-lg text-xs font-bold py-1 px-2.5 ${tag.class}`}
+                                >
+                                    <tag.icon class="size-3.5" />
+                                    {tag.name}
+                                </span>
+                            </li>
+                        ))}
+                    </ul>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-pretty">
+                        {description}
+                    </p>
+                    <div class="pt-4">
+                        <a
+                            href={link}
+                            target="_blank"
+                            class="inline-flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-bold hover:underline group/link"
+                        >
+                            Visitar sitio web
+                            <svg
+                                class="size-4 transform group-hover/link:translate-x-1 transition-transform"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                                stroke-width="3"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+                                />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </article>
+        ))
+    }
+</div>
+
+<!-- {
+    PROJECTS1.map(({ image, title, description, tags }) => (
+        <article class="mt-16">
+            <h3 class="text-2xl text-black dark:text-white font-semibold mb-2">{title}</h3>
+            <ul class="flex gap-x-2 flex-row">
+                {tags.map((tag) => (
+                    <li>
+                        <span class={`flex gap-x-2 rounded-full text-sm mt-2 ${tag.class} py-1 px-2`}>
+                            <tag.icon class="size-4 mt-0.5" />
+                            {tag.name}
+                        </span>
+                        </li>
+                ))}
+            </ul>
+            <p class="text-base text-gray-700 dark:text-gray-400 mt-3 mb-4 text-pretty">{description}</p>
+            <img class="rounded shadow-2xl shadow-white/10 mt-4 transition ease-in-out duration-1000 h-full hover:scale-105"
+            src={image} 
+            alt={`Captura de pantalla del proyecto ${image}`} />
+        </article>
+    ))
+}
+
+
 {
-    PROJECTS.map(({ image, title, description, tags }) => (
-        <article>
-            <h3 class="text-2xl font-semibold text-yellow-200 mb-4">{title}</h3>
-            <p class="text-lg mb-6 text-pretty">{description}</p>
+    PROJECTS2.map(({ image, title, description, tags }) => (
+        <article class="mt-16">
+            <h3 class="text-2xl text-black dark:text-white font-semibold mb-2">{title}</h3>
             <ul class="flex gap-x-2 flex-row">
                 {tags.map((tag) => (
                     <li>
@@ -47,9 +166,12 @@ const PROJECTS = [
                         </li>
                 ))}
             </ul>
-            <img class="rounded shadow-2xl shadow-white/10 mt-4"
+                <p class="text-base text-gray-700 dark:text-gray-400 mt-3 mb-4 text-pretty">{description}</p>
+            <a href="#">
+                <img class="rounded shadow-2xl shadow-white/10 mt-4 transition ease-in-out duration-1000 h-full hover:scale-105"
             src={image} 
             alt={`Captura de pantalla del proyecto ${image}`} />
+            </a>
         </article>
     ))
-}
+} -->
